@@ -1,0 +1,35 @@
+<apex:page Controller="FolderAccess" id="thePage"  sidebar="false"  contentType="application/vnd.ms-excel#FolderSharingList.xls"> 
+<apex:form >
+ <!-- <apex:commandButton id="button" style="margin-left:10px;" value="Export as Excel" action="{!exportToExcel}" reRender="" /> -->
+    <Table width="100%">
+    <TR style="background-color:blue;color:white">
+     <th width="20%">Folder Name</th> 
+     <th width="20%">Folder DeveloperName</th>
+     <th width="5%">Folder Type</th>
+     <th width="10%">Access Type</th>
+     <th width="14%">Sharing Type</th>
+     <th >Sharing Detail</th>
+    </tr>
+<apex:repeat value="{!reportDashboardFolders}" var="folder" >
+    <tr>  
+        <td>{!folder.label}</td>
+        <td>{!folder.name}</td>
+        <td>{!folder.type}</td>
+        <td colspan="3">
+        
+           <apex:repeat value="{!folder.shares.shares}" var="share" >      
+           <table width="60%">
+         <tr>  
+            <td width="30%">{!share.accessType}</td>
+            <td width="45%">{!share.shareType}</td>
+            <td width="25%">{!share.sharedWithLabel}</td>
+         </tr>   
+        </table>    
+        </apex:repeat> 
+        </td>
+
+    </tr>
+    </apex:repeat>
+    </table>        
+</apex:form>
+</apex:page>
